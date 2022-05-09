@@ -13,12 +13,12 @@ const Services = () => {
       'img': flouride
     },
     {
-      '_id': 1,
+      '_id': 2,
       'name': 'Cavity Filling',
       'img': cavity
     },
     {
-      '_id': 1,
+      '_id': 3,
       'name': 'Teeth Whitening',
       'img': teeth
     },
