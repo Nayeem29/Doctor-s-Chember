@@ -21,7 +21,8 @@ const ApointmentService = ({ service, setTreatment }) => {
             className="btn modal-button btn-primary mx-auto"
             disabled={slots.length === 0}
             onClick={() => setTreatment(service)}
-          >book Appointment</label>
+          >book Appointment
+          </label>
         </div>
       </div>
     </div>
