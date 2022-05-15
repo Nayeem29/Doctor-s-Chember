@@ -6,23 +6,23 @@ const Footer = () => {
       <footer className="footer p-10 mx-auto">
         <div className='mx-auto'>
           <span className="footer-title">Services</span>
-          <a className="link link-hover">Branding</a>
-          <a className="link link-hover">Design</a>
-          <a className="link link-hover">Marketing</a>
-          <a className="link link-hover">Advertisement</a>
+          <p className="p p-hover">Branding</p>
+          <p className="p p-hover">Design</p>
+          <p className="p p-hover">Marketing</p>
+          <p className="p p-hover">Advertisement</p>
         </div>
         <div className='mx-auto'>
           <span className="footer-title">Company</span>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <p className="p p-hover">About us</p>
+          <p className="p p-hover">Contact</p>
+          <p className="p p-hover">Jobs</p>
+          <p className="p p-hover">Press kit</p>
         </div>
         <div className='mx-auto'>
           <span className="footer-title">Legal</span>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <p className="p p-hover">Terms of use</p>
+          <p className="p p-hover">Privacy policy</p>
+          <p className="p p-hover">Cookie policy</p>
         </div>
       </footer>
       <div className='text-center'>

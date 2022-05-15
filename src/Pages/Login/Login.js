@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import { useForm } from "react-hook-form";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import Loading from '../../Shared/Loading';
 
@@ -12,8 +12,13 @@ const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+  const [sendPasswordResetEmail] = useSendPasswordResetEmail(
+    auth
+  );
+  const location = useLocation();
   const [signInWithGoogle, gUser, gLoading, gError] = useSignInWithGoogle(auth);
   const navigate = useNavigate();
+  let from = location.state?.from?.pathname || "/";
   let errorMsg;
   const { register, handleSubmit, formState: { errors } } = useForm();
   const onSubmit = data => {
@@ -24,9 +29,17 @@ const Login = () => {
   };
   useEffect(() => {
     if (user || gUser) {
-      navigate('/');
+      navigate(from, { replace: true });
     }
-  }, [user, gUser, navigate]);
+  }, [user, gUser, navigate, from]);
+  const passwordReset = async () => {
+    if (user) {
+      await sendPasswordResetEmail(user.email);
+      alert('Password Reset Email is sent');
+    } else {
+      alert('No email is found!')
+    }
+  }
 
   if (loading || gLoading) {
     return <Loading />
@@ -94,6 +107,9 @@ const Login = () => {
                 {errors.password?.type === 'pattern' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
                 {errors.password?.type === 'required' && <span className="label-text-alt text-red-500">{errors.password.message}</span>}
               </label>
+              <button onClick={passwordReset}>
+                <small>Forget Password?</small>
+              </button>
               {
                 error && errorMsg
               }
