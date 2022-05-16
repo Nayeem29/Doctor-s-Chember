@@ -5,6 +5,7 @@ import { useCreateUserWithEmailAndPassword, useSignInWithGoogle } from 'react-fi
 
 import Loading from '../../Shared/Loading';
 import auth from '../../firebase.init';
+import useToken from '../../Hooks/useToken';
 
 const Signup = () => {
   const [
@@ -28,12 +29,13 @@ const Signup = () => {
     resetField("email")
     resetField("password")
   };
+  const [token] = useToken(user || gUser);
 
   useEffect(() => {
-    if (user || gUser) {
-      navigate('/login')
+    if (token) {
+      navigate('/appointments')
     }
-  }, [user, navigate, gUser])
+  }, [token, navigate])
 
 
   if (loading || gLoading) {

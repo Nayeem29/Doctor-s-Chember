@@ -3,6 +3,7 @@ import { useSendPasswordResetEmail, useSignInWithEmailAndPassword, useSignInWith
 import { useForm } from "react-hook-form";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
+import useToken from '../../Hooks/useToken';
 import Loading from '../../Shared/Loading';
 
 const Login = () => {
@@ -27,11 +28,12 @@ const Login = () => {
     const password = data.password;
     signInWithEmailAndPassword(email, password);
   };
+  const [token] = useToken(user || gUser);
   useEffect(() => {
-    if (user || gUser) {
+    if (token) {
       navigate(from, { replace: true });
     }
-  }, [user, gUser, navigate, from]);
+  }, [token, navigate, from]);
   const passwordReset = async () => {
     if (user) {
       await sendPasswordResetEmail(user.email);
