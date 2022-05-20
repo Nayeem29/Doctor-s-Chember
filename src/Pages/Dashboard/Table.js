@@ -6,7 +6,7 @@ const Table = ({ user, index, refetch }) => {
   const { email, role } = user;
   const navigate = useNavigate()
   const makeAdmin = () => {
-    fetch(`http://localhost:5000/user/admin/${email}`, {
+    fetch(`https://stormy-plateau-40538.herokuapp.com/user/admin/${email}`, {
       method: 'PUT',
       headers: {
         'authorization': `Bearer ${localStorage.getItem('accessToken')}`
@@ -20,7 +20,7 @@ const Table = ({ user, index, refetch }) => {
     })
       .then(data => {
         if (data.modifiedCount > 0) {
-          // console.log(data)
+
           refetch();
           toast.success(`Congrats! Admin is made`);
         }
